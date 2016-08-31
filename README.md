@@ -12,3 +12,6 @@ To build the compiler:
 The compiler/queries directory contains example queries. To run the compiler on them all:
 
   Run allqueries.sh in the compiler directory.
+
+The expanded OVS version with support for recursive learn can be found at:
+  https://github.com/ndemarinis/ovs

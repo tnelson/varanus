@@ -1,6 +1,0 @@
-#!/bin/bash
-
-# Just kill all instances of the OVS server processes
-killall ovs-vswitchd
-killall ovsdb-server
-

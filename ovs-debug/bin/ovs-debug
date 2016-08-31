@@ -1,4 +1,0 @@
-#!/bin/bash
-
-# Start gdb and attach to ovs-vswitchd's process
-sudo gdb /usr/local/sbin/ovs-vswitchd -p $(cat /usr/local/var/run/openvswitch/ovs-vswitchd.pid)

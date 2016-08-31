@@ -1,2 +1,0 @@
-# Adjust the default path when using sudo to include our scripts
-Defaults        secure_path="/vagrant/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"

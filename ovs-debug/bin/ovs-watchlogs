@@ -1,3 +1,0 @@
-#/bin/bash
-
-multitail --mergeall -cs -i /usr/local/var/log/openvswitch/ovs-vswitchd.log -cs -i /usr/local/var/log/openvswitch/ovsdb-server.log
