@@ -1,0 +1,3 @@
+query
+	not see x | x.locPt = 1,x.nwSrc=y.nwSrc until see y : ingress ip | y.locPt=2
+	see z: ingress ip within 10 | z.locPt =  3, z.nwDst = y.nwSrc, z.dlSrc = ca:FE:ca:FE:01:23, z.nwSrc = 192.168.0.1

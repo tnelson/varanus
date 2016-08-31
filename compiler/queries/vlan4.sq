@@ -1,0 +1,5 @@
+# *** Property 4:  Untagged packets are tagged before departure on port 5
+# TODO: should untagged be zero or 0xffff? (Conflict in docs.)
+query
+  see p0: arrival eth      | p0.vlan_id   = 0xffff
+  see p0': egress same eth | p0'.vlan_id != 0xffff

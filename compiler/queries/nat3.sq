@@ -1,0 +1,12 @@
+# (3) Dynamic (cross): return packets are translated according to previously seen initial packet translation
+
+# Initially this looks impossible to chain, since p0.tpSrc isn't available in p0' or p1.
+# However, for purposes of chaining, an ingress/egress-same pair are the same observation (since all values are available)
+
+# TODO: sugar to avoid p0' explicitly as observation (just use it?)
+
+query
+  see p0: arrival tcp        | p0.locPt = 1
+    see p0': egress same tcp |
+  see p1 : arrival tcp       | p1.locPt = 2, p1.tpDst = p0'.tpSrc
+    see p1': egress same tcp | p1'.tpDst != p0.tpSrc

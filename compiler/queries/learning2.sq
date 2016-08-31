@@ -1,0 +1,6 @@
+# Never flood a packet if its dest address is learned
+# Note we don't need/want egress-same here.
+
+query
+see l: arrival eth | 
+see p: egress eth | p.outPt = 0xFFFB, p.dlDst = l.dlSrc

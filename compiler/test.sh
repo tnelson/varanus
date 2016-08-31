@@ -1,0 +1,1 @@
+scala edu.brown.simon.SimonRunner -test

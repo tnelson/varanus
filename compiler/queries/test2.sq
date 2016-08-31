@@ -1,0 +1,11 @@
+# Test for the 3 next-table counters in static compiler
+# test deferral: single step chain only
+# (next test should test multi-step chains)
+query
+	see p1 : ingress ip | p1.locpt = 1
+	see p2 : ingress ip | p2.locpt = 2, p2.ipsrc = p1.ipsrc
+	see p2' : egress same ip | p2'. outpt != 1
+	see p3 : ingress ip | p3.locpt = 1, p3.ipsrc = p2'.ipsrc
+	see p4 : egress ip | p4.outpt = 2, p4.ipsrc = p3.ipsrc
+
+

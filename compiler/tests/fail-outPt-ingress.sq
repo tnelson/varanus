@@ -1,0 +1,3 @@
+# Should throw an error: the output port is meaningless for ingress events
+query
+  see p: ingress | p.OutPt = 1

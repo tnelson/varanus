@@ -1,0 +1,8 @@
+# *** Property 1:  Never see unexpected tags on a port
+# Given that we expect to see VLAN ID {5, 6} on port 1
+# TN note: We have no "or" in the language, but we can add multiple not-equals
+# TODO: the negative version of this would be impossible to write in our current language, right?
+# TODO: test the conjunction of !=s
+# TODO: Do we need to bridge vlan between ingress/egress? More likely than many other fields.
+query
+  see p0: arrival eth | p0.in_port = 1, p0.dl_vlan != 5, p0.dl_vlan != 6

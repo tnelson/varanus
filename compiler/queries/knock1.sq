@@ -1,0 +1,6 @@
+# Recognize valid port knocking sequences
+# First version: don't care about intermediate knocks
+query
+  see k1: arrival tcp | k1.locpt = 1, k1.tpdst = 1000
+  see k2: arrival tcp | k2.locpt = 1, k2.tpdst = 2000
+  see k3: arrival tcp | k3.locpt = 1, k3.tpdst = 3000

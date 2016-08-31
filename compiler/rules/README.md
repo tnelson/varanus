@@ -1,0 +1,1 @@
+This directory (empty in the repository) is for placing compiled queries without cluttering the main compiler directory.

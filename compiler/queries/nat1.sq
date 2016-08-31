@@ -1,0 +1,7 @@
+#  (1) Static: Packets departing use the external assigned IP
+#    TODO: can't handle pool NAT (requires matching any of a set of external IPs)
+#           we have no "or" in the language; feels like it could be added for limited cases like this though.
+# "external port" = 2
+# "external assigned ip" = 10.1.1.1
+query
+  see p: egress tcp | p.OutPt = 2, p.nwSrc != 10.1.1.1

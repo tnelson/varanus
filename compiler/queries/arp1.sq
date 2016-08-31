@@ -1,0 +1,9 @@
+# Comments can now appear at the beginning of a query (not at the end)
+  # Multiline comments are allowed.
+   # Even with
+# whitespace
+#
+# *** Property 1:  If the controller has a cached value for an address, it should not send any requests
+query
+  see p0: arrival arp      | p0.arp_op = 2, p0.dl_dst = ca:fe:ca:fe:ca:fe
+  see p1: arrival arp      | p1.dl_src = ca:fe:ca:fe:ca:fe, p1.arp_op = 1, p1.arp_tha = p0.arp_tha

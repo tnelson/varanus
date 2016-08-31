@@ -1,0 +1,4 @@
+#*** Property 2:  Once we see a tag on a port, we should never see another tag on that port
+query
+  see p0: arrival  eth    | p0.vlan_id != 0
+  see p1: arrival  eth    | p1.in_port = p0.in_port, p1.vlan_id != 0, p1.vlan_id != p0.vlan_id

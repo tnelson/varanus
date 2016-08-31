@@ -1,0 +1,14 @@
+# If a request was made for an address in the cache, we should see a response from the controller
+# Counterexample:
+# - See a reply sent to the controller
+# - See a request for an address
+# - Don't see a reply within time T
+#
+# TN note: would like to say p0.arp, but for the moment we just do p0.dlTyp = 0x806
+# TN note: would like some aliasing for controller address, ARP codes
+#
+query
+  see p0: arrival arp               | p0.arp_op = 2, p0.dl_dst = ca:fe:ca:fe:ca:fe
+  see p1: arrival arp               | p1.arp_op = 1, p1.arp_tha = p0.arp_tha
+  not see p2: arrival arp within 10 | p2.dl_src = ca:fe:ca:fe:ca:fe, p2.dl_dst = p1.dl_src,
+                                      p2.arp_op = 2, p2.arp_tha = p1.arp_tha

@@ -1,0 +1,6 @@
+# Test register 9 equality transfer between ingress and egress-same
+query
+	see p : ingress ip  | p.locpt = 1
+	see p': egress same ip | p'.ipsrc = p.ipsrc, p'.ipdst = p.ipdst, p'.dlsrc != p.dlDst, p'.dlDst != p.dlSrc
+
+

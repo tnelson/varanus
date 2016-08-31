@@ -1,0 +1,7 @@
+# *** Property 3:  If a new ARP request is made, that request should be broadcast to internal hosts from controller
+query
+not see p_reply                   | p_reply.arp_op = 2, p_req.arp_tha = p_reply.arp_tha
+    until see p_req: arrival arp  | p_req.arp_op = 1, p_req.dl_src != ca:fe:ca:fe:ca:fe
+
+not see p_creq: arrival arp within 10 | p_creq.dl_src = ca:fe:ca:fe:ca:fe, p_creq.dl_dst = FF:FF:FF:FF:FF:FF,
+                                        p_creq.arp_op = 1, p_creq.arp_tha = p_req.arp_tha

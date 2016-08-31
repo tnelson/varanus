@@ -1,0 +1,11 @@
+#*** Property 3:  Once we see N distinct tags on a port, don't see a tag after that
+# For this example, use 3 distinct tags (expected) + 1 extra that triggers alarm
+# Note different kinds of chaining for in_port vs. the vlan_ids
+query
+  see p0: arrival eth     | p0.vlan_id != 0
+  see p1: arrival eth     | p1.in_port = p0.in_port, p1.vlan_id != 0,
+                            p1.vlan_id != p0.vlan_id
+  see p2: arrival eth     | p2.in_port = p1.in_port, p2.vlan_id != 0,
+                            p2.vlan_id != p0.vlan_id, p2.vlan_id != p1.vlan_id
+  see p3: arrival eth     | p3.in_port = p2.in_port, p3.vlan_id != 0,
+                            p3.vlan_id != p0.vlan_id, p3.vlan_id != p1.vlan_id, p3.vlan_id != p2.vlan_id

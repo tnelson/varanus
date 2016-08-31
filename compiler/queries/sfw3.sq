@@ -1,0 +1,7 @@
+# *** Property 3:  Inbound messages are allowed (for 10 seconds) after we seen an outbound message
+# Note: egress same conflates "see" and "not see" since we have a port value for "drop" etc.
+#  Hence p' really matches that anything happens except sending out port 1
+query
+	see s : ingress ip | s.locpt = 1
+	see p : ingress ip within 10 | p.locpt = 2, p.nwsrc = s.nwdst, p.nwdst = s.nwSrc
+	see p': egress same ip | p'.outpt != 1

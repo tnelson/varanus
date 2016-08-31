@@ -1,0 +1,3 @@
+# *** Property 4:  We never see requests that aren't from the controller that egress the switch
+query
+  see p0: egress arp | p0.dl_src != ca:fe:ca:fe:ca:fe, p0.arp_op = 1

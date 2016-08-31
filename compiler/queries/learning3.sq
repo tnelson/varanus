@@ -1,0 +1,6 @@
+# Once learned, send out correct port
+# (This is a close variation on learning2.sq, where we only check for non-flooding.)
+
+query
+see l: arrival eth | 
+see p: egress eth | p.outPt != l.locPt, p.dlDst = l.dlSrc

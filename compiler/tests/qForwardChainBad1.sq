@@ -1,0 +1,12 @@
+		#val qForwardChainBad1 = new Query(List(OSee("p1",Ingress(EthPacket),List(), None),
+        #               		     	           OSee("p2",Ingress(EthPacket),List(LEq(TField("p1","dlSrc"),
+        #               		    	        	                                     TField("p2","dlSrc"))), None),
+        #              		    	           OSee("p3",Ingress(EthPacket),List(LEq(TField("p1","dlDst"),
+        #               		    	                                                 TField("p3","dlSrc"))), None)
+        #               		    	           ))
+
+        # qForwardChainBad1
+query
+see p1: ingress eth |
+see p2: ingress eth | p1.dlSrc = p2.dlSrc
+see p3: ingress eth | p1.dldst = p3.dlsrc

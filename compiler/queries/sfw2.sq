@@ -1,0 +1,4 @@
+# *** Property 2:  Traffic from an internal port should be forwarded out the external port
+query
+	see p: ingress eth      | p.locpt = 1
+	see p': egress same eth | p'.outpt != 2

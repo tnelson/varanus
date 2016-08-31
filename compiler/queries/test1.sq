@@ -1,0 +1,10 @@
+# Test for the 3 next-table counters in static compiler
+# Not intended to test deferral (since no cross-observation references)
+query
+	see p1 : ingress eth | p1.locpt = 1
+	see p2 : ingress eth | p2.locpt = 2
+	see p2' : egress same eth | p2'.outpt != 1
+	see p3 : ingress eth | p3.locpt = 1
+	see p4 : egress eth | p4.outpt = 2
+
+

@@ -1,0 +1,5 @@
+#*** Property 1:  Traffic from host A will be dropped before egress
+# Counterexample: see such an egress
+# Caveat: assumes no header modification
+query
+	see p : egress ip | p.nwSrc = 192.0.2.1

@@ -1,0 +1,37 @@
+#!/bin/bash
+
+if [[ -n "$1" ]]; then
+    OVS_PREFIX="$1"
+else
+    OVS_PREFIX="/usr/local/"
+fi
+
+# Get paths to each of the OVS binaries
+OVSDB_SERVER="${OVS_PREFIX}"/sbin/ovsdb-server
+OVS_VSCTL="${OVS_PREFIX}"/bin/ovs-vsctl
+OVS_VSWITCHD="${OVS_PREFIX}"/sbin/ovs-vswitchd
+
+if [[ ! ( -e ${OVSDB_SERVER} && -e ${OVS_VSCTL} && -e ${OVS_VSWITCHD} ) ]]; then
+    echo "An OVS binary was not found in ${OVS_PREFIX}!  Aborting!"
+    exit 1
+fi
+
+# Load the tunnel module, which is needed for the userspace datapath
+modprobe tun
+
+# Start openvswitch manually as recommended by ovs/INSTALL.md
+
+# We aren't using an init system here so we can control our how our
+#  build gets run more easily
+${OVSDB_SERVER} --remote=punix:"${OVS_PREFIX}"/var/run/openvswitch/db.sock \
+                 --remote=db:Open_vSwitch,Open_vSwitch,manager_options \
+                 --private-key=db:Open_vSwitch,SSL,private_key \
+                 --certificate=db:Open_vSwitch,SSL,certificate \
+                 --bootstrap-ca-cert=db:Open_vSwitch,SSL,ca_cert \
+                 --pidfile --detach --log-file
+
+${OVS_VSCTL} --no-wait init
+
+${OVS_VSWITCHD} --pidfile --detach \
+                --log-file
+

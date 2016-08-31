@@ -1,0 +1,5 @@
+# *** Property 4:  If we haven't seen an outbound message for an IP, inbound messages from that IP should be dropped
+query
+  not see s                  | s.locpt = 1, s.nwsrc=p.nwdst, s.nwdst=p.nwSrc
+    until see p : ingress ip | p.locpt = 2
+  see p' : egress same ip  | p'.outpt = 1
